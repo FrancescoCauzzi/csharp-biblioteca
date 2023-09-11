@@ -12,7 +12,7 @@ namespace csharp_biblioteca
 
         private int PageNumber {get => this._pageNumber; set => this._pageNumber = value;}
 
-        public Book(string idCode, string title, string publicationYear, string genre, string libraryShelf, string author, int pageNumber) :base(idCode, title, publicationYear, genre, libraryShelf,author){
+        public Book(string idCode, string title, int publicationYear, string genre, string libraryShelf, string author, int pageNumber) :base(idCode, title, publicationYear, genre, libraryShelf,author){
             this._pageNumber = pageNumber;
         }
 

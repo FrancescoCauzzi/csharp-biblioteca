@@ -11,7 +11,7 @@ namespace csharp_biblioteca
         private string _idCode;
         private string _title;
 
-        private string _publicationYear;
+        private int _publicationYear;
 
         private string _genre;
 
@@ -24,7 +24,7 @@ namespace csharp_biblioteca
 
         public string Title {get => this._title; set => this._title = value;}
 
-        public string PublicationYear { get => this._publicationYear; set => this._publicationYear = value; }
+        public int PublicationYear { get => this._publicationYear; set => this._publicationYear = value; }
 
         public string Genre { get => this._genre; set => this._genre = value; }
 
@@ -34,7 +34,7 @@ namespace csharp_biblioteca
         
         // Constructor
 
-        public LibraryItem( string idCode, string title, string publicationYear, string genre, string libraryShelf, string author)
+        public LibraryItem( string idCode, string title, int publicationYear, string genre, string libraryShelf, string author)
         {
             _idCode = idCode;
             _title = title;
