@@ -54,37 +54,42 @@ namespace csharp_biblioteca
         // find Methods
         
 
-        public void GetItemFromTitle(string title)
+        public string GetItemFromTitle(string title)
         {
             LibraryItem? foundItem = LibraryItems.Find(item => item.Title == title);
 
             if (foundItem != null)
             {
-                Console.WriteLine($"Found: {foundItem.Title}");
+                // Console.WriteLine($"Found: {foundItem.Title}");
+                return foundItem.Title;
             }
             else
             {
-                Console.WriteLine("We did not find the item");
+                const string noMatchTitleMessage = "We did not find the item";
+                return noMatchTitleMessage;
             }
         }
 
 
-        public void GetItemFromCode( string code)
+        public string GetItemFromCode( string code)
         {
             LibraryItem? foundItem = LibraryItems.Find(libraryItem => libraryItem.IdCode == code);
             
 
             if (foundItem != null)
             {
-                Console.WriteLine($"The item associated to the code {code} is: {foundItem.Title}");
+                // Console.WriteLine($"The item associated to the code {code} is: {foundItem.Title}");
+                return foundItem.Title;
             }
             else
             {
-                Console.WriteLine("We did not find the item, your code does not match");
+                const string noMatchCodeMessage = "We did not find the item, your code does not match";
+                return noMatchCodeMessage;
+                
             }              
         }
 
-        public void GetLoanFromUserNameAndSurname(string userNameAndSurname)
+        public void PrintLoanFromUserNameAndSurname(string userNameAndSurname)
         {
             List<ItemLoan> loanedItems = ItemLoans.FindAll(loan => loan.UserInfo == userNameAndSurname);
 

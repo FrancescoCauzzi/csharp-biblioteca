@@ -39,7 +39,7 @@
             
             bibliotecaCentrale.AddLoan(book1,user1);
 
-            bibliotecaCentrale.GetLoanFromUserNameAndSurname("Rossi Mario");
+            bibliotecaCentrale.PrintLoanFromUserNameAndSurname("Rossi Mario");
 
            
 
