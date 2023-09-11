@@ -30,6 +30,7 @@ namespace csharp_biblioteca
         public string Password { get => this._password; set => this._password = value; }
         public string PhoneNumber { get => this._phoneNumber; set => this._phoneNumber = value; }
 
+        // constructor
         public User(string surname, string name, string email, string password, string phoneNumber)
         {
             this._surname = surname;

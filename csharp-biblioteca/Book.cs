@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace csharp_biblioteca
 {
-    internal class Book : LibraryItem
+    public class Book : LibraryItem
     {
         private int _pageNumber;
 
