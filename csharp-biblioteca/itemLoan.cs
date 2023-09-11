@@ -35,7 +35,7 @@ namespace csharp_biblioteca
         {
             _libraryItem = libraryItem;
 
-            _userInfo = $"{user.Name} {user.Surname}";
+            _userInfo = $"{user.Surname} {user.Name}";
             // down here I set the current date as the check out date
             
             DateTime currentDate = DateTime.Today;

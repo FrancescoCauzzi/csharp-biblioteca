@@ -33,6 +33,16 @@
             bibliotecaCentrale.GetItemFromTitle("The Hobbit");
             bibliotecaCentrale.GetItemFromTitle("The Hike");
 
+            User user1 = new User("Rossi", "Mario", "rossimario@mail.com","xxxxxxxx","3405434566"); 
+            bibliotecaCentrale.AddUser(user1);
+
+            
+            bibliotecaCentrale.AddLoan(book1,user1);
+
+            bibliotecaCentrale.GetLoanFromUserNameAndSurname("Rossi Mario");
+
+           
+
 
 
             
