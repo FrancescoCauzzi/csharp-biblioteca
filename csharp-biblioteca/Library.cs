@@ -10,7 +10,8 @@ namespace csharp_biblioteca
     {
         // private fields
         // down here is better to use a dictionary to associate the code with the item
-        private List<LibraryItem> _libraryItems;
+        private Dictionary<string, LibraryItem> _libraryItems;
+
         // users
         private List<User> _users;
 
@@ -19,7 +20,7 @@ namespace csharp_biblioteca
         private List<ItemLoan> _itemLoans;
 
         // Public properties
-        public List<LibraryItem> LibraryItems { get => _libraryItems; set => _libraryItems = value; }
+        public Dictionary<string, LibraryItem> LibraryItems { get => _libraryItems; set => _libraryItems = value; }
 
         public List<User> Users { get => _users; set => _users = value; }
 
@@ -28,7 +29,7 @@ namespace csharp_biblioteca
         // Constructor
         public Library()
         {
-            _libraryItems = new List<LibraryItem>();
+            _libraryItems = new Dictionary<string, LibraryItem>();
             _users = new List<User>();
             _itemLoans = new List<ItemLoan>();
         }
@@ -39,7 +40,7 @@ namespace csharp_biblioteca
         // Add Library Item
         public void AddLibraryItem(LibraryItem libraryItem)
         {
-            LibraryItems.Add(libraryItem);
+            LibraryItems.Add(libraryItem.IdCode, libraryItem);
         }
 
         // Add User
@@ -60,8 +61,23 @@ namespace csharp_biblioteca
         // find Methods
 
 
-        public string GetItemFromTitle(string title)
+        public List<LibraryItem> GetItemFromTitle(string title)
         {
+            List<LibraryItem> retrievedLibraryItems = new List<LibraryItem>();
+
+            var listLibraryItem = LibraryItems.Values;
+
+            foreach (var item in listLibraryItem)
+            {
+                if (item.Title == title)
+                {
+                    retrievedLibraryItems.Add(item);
+                }
+            }
+
+            return retrievedLibraryItems;
+
+            /*
             LibraryItem? foundItem = LibraryItems.Find(item => item.Title == title);
 
             if (foundItem != null)
@@ -74,11 +90,44 @@ namespace csharp_biblioteca
                 string noMatchTitleMessage = $"We did not find the item with the title '{title}'";
                 return noMatchTitleMessage;
             }
+            */
+        }
+
+        public static void PrintListOfLibraryItems(List<LibraryItem> list)
+        {
+            if (list.Count > 0)
+            {
+
+
+                Console.Write("[ ");
+
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (i < list.Count - 1)
+                    {
+                        Console.Write(list[i] + ", ");
+                    }
+                    else
+                    {
+                        Console.Write(list[i]);
+                    }
+                }
+
+                Console.WriteLine(" ]");
+            }
+            else
+            {
+                Console.WriteLine("No items found");
+            }
+
         }
 
 
-        public string GetItemFromCode(string code)
+        public LibraryItem GetItemFromCode(string code)
         {
+            var findDocCode = LibraryItems[code];
+            return findDocCode;
+            /*
             LibraryItem? foundItem = LibraryItems.Find(libraryItem => libraryItem.IdCode == code);
 
 
@@ -93,6 +142,7 @@ namespace csharp_biblioteca
                 return noMatchCodeMessage;
 
             }
+            */
         }
 
         public void PrintLoanFromUserNameAndSurname(string userNameAndSurname)
@@ -118,7 +168,7 @@ namespace csharp_biblioteca
         public void PrintLibraryItems()
         {
             Console.WriteLine("List of Library Items:");
-            foreach (LibraryItem item in _libraryItems)
+            foreach (LibraryItem item in _libraryItems.Values)
             {
                 string mediaType = "";
                 if (item is Book)

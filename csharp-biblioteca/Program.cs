@@ -28,11 +28,18 @@
             bibliotecaCentrale.PrintLibraryItems();
             Console.WriteLine();
 
-            bibliotecaCentrale.GetItemFromCode("BOOKPL90A34");
+
+            bibliotecaCentrale.GetItemFromCode("BOOKPL90A34").ToString();
+            Console.WriteLine(bibliotecaCentrale.GetItemFromCode("BOOKPL90A34").ToString());
+
+
             Console.WriteLine();
-            Console.WriteLine(bibliotecaCentrale.GetItemFromTitle("The Hobbit"));
+            Library.PrintListOfLibraryItems(bibliotecaCentrale.GetItemFromTitle("The Hobbit"));
+
             Console.WriteLine();
-            Console.WriteLine(bibliotecaCentrale.GetItemFromTitle("The Hike"));
+
+            Library.PrintListOfLibraryItems(bibliotecaCentrale.GetItemFromTitle("The Hike"));
+
             Console.WriteLine();
             Console.WriteLine(book5.ToString());
             Console.WriteLine();
