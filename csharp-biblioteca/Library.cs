@@ -9,14 +9,18 @@ namespace csharp_biblioteca
     public class Library
     {
         // private fields
-        private List<LibraryItem> _libraryItems;        
+        // down here is better to use a dictionary to associate the code with the item
+        private List<LibraryItem> _libraryItems;
+        // users
         private List<User> _users;
+
+        // items loans
 
         private List<ItemLoan> _itemLoans;
 
         // Public properties
-        public List<LibraryItem> LibraryItems {get => _libraryItems; set => _libraryItems = value;}
-        
+        public List<LibraryItem> LibraryItems { get => _libraryItems; set => _libraryItems = value; }
+
         public List<User> Users { get => _users; set => _users = value; }
 
         public List<ItemLoan> ItemLoans { get => _itemLoans; set => _itemLoans = value; }
@@ -24,26 +28,28 @@ namespace csharp_biblioteca
         // Constructor
         public Library()
         {
-            _libraryItems = new List<LibraryItem>();            
+            _libraryItems = new List<LibraryItem>();
             _users = new List<User>();
             _itemLoans = new List<ItemLoan>();
         }
 
         // Methods
-        
+
         // Add Methods
         // Add Library Item
-        public void AddLibraryItem( LibraryItem libraryItem)
+        public void AddLibraryItem(LibraryItem libraryItem)
         {
-            LibraryItems.Add(libraryItem);        
+            LibraryItems.Add(libraryItem);
         }
 
         // Add User
 
         public void AddUser(User user)
         {
-            Users.Add(user);        
+            Users.Add(user);
         }
+
+        // Add loan
 
         public void AddLoan(LibraryItem libraryItem, User user)
         {
@@ -52,7 +58,7 @@ namespace csharp_biblioteca
         }
 
         // find Methods
-        
+
 
         public string GetItemFromTitle(string title)
         {
@@ -65,16 +71,16 @@ namespace csharp_biblioteca
             }
             else
             {
-                const string noMatchTitleMessage = "We did not find the item";
+                string noMatchTitleMessage = $"We did not find the item with the title '{title}'";
                 return noMatchTitleMessage;
             }
         }
 
 
-        public string GetItemFromCode( string code)
+        public string GetItemFromCode(string code)
         {
             LibraryItem? foundItem = LibraryItems.Find(libraryItem => libraryItem.IdCode == code);
-            
+
 
             if (foundItem != null)
             {
@@ -83,10 +89,10 @@ namespace csharp_biblioteca
             }
             else
             {
-                const string noMatchCodeMessage = "We did not find the item, your code does not match";
+                string noMatchCodeMessage = "We did not find the item, your code does not match";
                 return noMatchCodeMessage;
-                
-            }              
+
+            }
         }
 
         public void PrintLoanFromUserNameAndSurname(string userNameAndSurname)
@@ -98,7 +104,7 @@ namespace csharp_biblioteca
                 Console.WriteLine($"Found {loanedItems.Count} loan(s) for {userNameAndSurname}:");
                 foreach (var loan in loanedItems)
                 {
-                    Console.WriteLine($"- {loan.LibraryItem.Title}");
+                    Console.WriteLine($"- {loan.LibraryItem.Title}, the due date is {loan.DueDate.ToString("dd/MM/yyyy")}");
                 }
             }
             else
@@ -115,20 +121,23 @@ namespace csharp_biblioteca
             foreach (LibraryItem item in _libraryItems)
             {
                 string mediaType = "";
-                if(item is Book){
+                if (item is Book)
+                {
                     mediaType = "Book";
-                }else{
+                }
+                else
+                {
                     mediaType = "Dvd";
-                
+
                 }
                 Console.WriteLine($"- {item.Title}, media type: {mediaType}");
             }
         }
 
 
-        
-           
 
-               
+
+
+
     }
 }

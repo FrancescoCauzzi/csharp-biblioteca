@@ -5,8 +5,8 @@
         static void Main(string[] args)
         {
             Library bibliotecaCentrale = new Library();
-            bibliotecaCentrale.AddLibraryItem(new Book("BOOKPL90A34","Il nome della Rosa", 1970, "Romance", "A420","Umberto Eco",800));
-            bibliotecaCentrale.AddLibraryItem(new Dvd("DVD434564","Berlin Calling", 2011, "Documentary", "D120","Paul Kalkbrenner",new TimeSpan(0, 1, 35, 00)));
+            bibliotecaCentrale.AddLibraryItem(new Book("BOOKPL90A34", "Il nome della Rosa", 1970, "Romance", "A420", "Umberto Eco", 800));
+            bibliotecaCentrale.AddLibraryItem(new Dvd("DVD434564", "Berlin Calling", 2011, "Documentary", "D120", "Paul Kalkbrenner", new TimeSpan(0, 1, 35, 00)));
             Book book1 = new Book("BOOKAB12C34", "1984", 1949, "Dystopian", "A123", "George Orwell", 328);
             Book book2 = new Book("BOOKCD23E45", "To Kill a Mockingbird", 1960, "Fiction", "B234", "Harper Lee", 281);
             Book book3 = new Book("BOOKEF34G56", "Pride and Prejudice", 1813, "Classic", "C345", "Jane Austen", 432);
@@ -19,35 +19,28 @@
 
             List<Book> books = new() { book1, book2, book3, book4, book5, book6, book7, book8, book9 };
 
-            foreach(Book book in books)
+            foreach (Book book in books)
             {
                 bibliotecaCentrale.AddLibraryItem(book);
-            } 
+            }
 
 
-            bibliotecaCentrale.PrintLibraryItems();   
-            Console.WriteLine();            
+            bibliotecaCentrale.PrintLibraryItems();
+            Console.WriteLine();
 
             bibliotecaCentrale.GetItemFromCode("BOOKPL90A34");
-            Console.WriteLine();            
-            bibliotecaCentrale.GetItemFromTitle("The Hobbit");
-            bibliotecaCentrale.GetItemFromTitle("The Hike");
-
-            User user1 = new User("Rossi", "Mario", "rossimario@mail.com","xxxxxxxx","3405434566"); 
+            Console.WriteLine();
+            Console.WriteLine(bibliotecaCentrale.GetItemFromTitle("The Hobbit"));
+            Console.WriteLine();
+            Console.WriteLine(bibliotecaCentrale.GetItemFromTitle("The Hike"));
+            Console.WriteLine();
+            Console.WriteLine(book5.ToString());
+            Console.WriteLine();
+            User user1 = new User("Rossi", "Mario", "rossimario@mail.com", "xxxxxxxx", "3405434566");
             bibliotecaCentrale.AddUser(user1);
-
-            
-            bibliotecaCentrale.AddLoan(book1,user1);
-
+            bibliotecaCentrale.AddLoan(book1, user1);
             bibliotecaCentrale.PrintLoanFromUserNameAndSurname("Rossi Mario");
 
-           
-
-
-
-            
-
-        
         }
     }
 }
